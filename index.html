@@ -1,18 +1,143 @@
-<!-- Navigation Header -->
-<header class="navbar">
-    <div class="nav-container">
-        <a href="#home" class="logo">
-            <!-- Replace the old icon with your custom logo img tag -->
-            <img src="logo.png" alt="Swayambhoo Logo" class="brand-logo-img">
-            <span>Swayambhoo</span>
-        </a>
-        <nav class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#meditations">Meditations</a>
-            <a href="#breathing">Breathwork</a>
-            <a href="https://www.youtube.com/@SwayambhooVijayeeBhav" target="_blank" class="nav-yt-btn">
-                <i class="ri-youtube-fill"></i> Channel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swayambhoo | Cosmic Meditation & Mindfulness</title>
+    <!-- Google Fonts: Inter for UI, Playfair Display for Serene Headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Remix Icons CDN for clean UI icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background Decorative Glows -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <i class="ri-compass-3-line brand-icon"></i>
+                <span>Swayambhoo</span>
             </a>
-        </nav>
-    </div>
-</header>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#meditations">Meditations</a>
+                <a href="#breathing">Breathwork</a>
+                <a href="https://www.youtube.com/@SwayambhooVijayeeBhav" target="_blank" class="nav-yt-btn">
+                    <i class="ri-youtube-fill"></i> Channel
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <h1 class="hero-title">Awaken Your Inner Calm. <br><span class="accent-text">Vijayee Bhav.</span></h1>
+            <p class="hero-subtitle">Step into a digital sanctuary designed to align your breath, quiet your mind, and unlock cosmic confidence through deep, guided meditation.</p>
+            <a href="#meditations" class="btn btn-primary">Explore Sanctuary</a>
+        </section>
+
+        <!-- Dynamic Audio Player Section -->
+        <section class="player-container glass-panel">
+            <div class="player-left">
+                <div class="now-playing-visual">
+                    <i class="ri-music-2-line"></i>
+                </div>
+                <div class="track-details">
+                    <h3 id="current-title">Select a meditation to begin</h3>
+                    <p id="current-category">Swayambhoo Originals</p>
+                </div>
+            </div>
+            
+            <div class="player-center">
+                <div class="player-controls">
+                    <button id="prev-btn" class="control-btn" title="Previous Track"><i class="ri-skip-back-mini-fill"></i></button>
+                    <button id="play-btn" class="control-btn master-play" title="Play/Pause"><i class="ri-play-fill"></i></button>
+                    <button id="next-btn" class="control-btn" title="Next Track"><i class="ri-skip-forward-mini-fill"></i></button>
+                </div>
+                <div class="progress-area">
+                    <span id="time-elapsed" class="time-stamp">00:00</span>
+                    <div class="progress-bar-wrapper" id="progress-wrapper">
+                        <div id="progress-bar" class="progress-bar-fill"></div>
+                    </div>
+                    <span id="time-total" class="time-stamp">00:00</span>
+                </div>
+            </div>
+
+            <div class="player-right">
+                <button id="mute-btn" class="control-btn"><i class="ri-volume-up-fill"></i></button>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.7" class="volume-slider">
+            </div>
+        </main>
+
+        <!-- Hidden Native Audio Tag managed by JavaScript -->
+        <audio id="native-audio" src=""></audio>
+
+        <!-- Meditation Library Grid -->
+        <section id="meditations" class="section-container">
+            <div class="section-header">
+                <h2>Meditation Sanctuary</h2>
+                <p>Curated soundscapes and guided journeys to balance your mental state.</p>
+            </div>
+            <div class="library-grid" id="library-container">
+                <!-- JavaScript dynamically populates cards here -->
+            </div>
+        </section>
+
+        <!-- Interactive Guided Breathing Space -->
+        <section id="breathing" class="section-container">
+            <div class="glass-panel dynamic-breathing-box">
+                <div class="breathing-info">
+                    <h2>Box Breathing Space</h2>
+                    <p>Calm your sympathetic nervous system instantly. Sync your breath pattern with the expanding cosmic circle below.</p>
+                    <button id="start-breath-btn" class="btn btn-secondary">Begin Breathwork</button>
+                </div>
+                <div class="breathing-visualizer-container">
+                    <div class="breath-circle" id="breath-node">
+                        <span id="breath-prompt">Ready</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- YouTube Channel Branding CTA -->
+        <section class="youtube-cta-banner glass-panel">
+            <div class="cta-content">
+                <span class="badge">Subscribe to Swayambhoo</span>
+                <h2>Deepen Your Daily Practice on YouTube</h2>
+                <p>Join our conscious community online. We post weekly long-form guided audio tracks, mindful habit breakdowns, and daily cosmic reminders for victory in everyday life.</p>
+                <a href="https://www.youtube.com/@SwayambhooVijayeeBhav" target="_blank" class="btn btn-yt">
+                    <i class="ri-youtube-fill"></i> Subscribe to Channel
+                </a>
+            </div>
+            <div class="cta-embed">
+                <!-- Placeholder frame mimicking a clean visual dashboard video window -->
+                <div class="video-mock-frame">
+                    <i class="ri-play-circle-line video-mock-icon"></i>
+                    <p>Watch Latest Guided Videos</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Swayambhoo. All Rights Reserved. Designed for absolute mental clarity.</p>
+            <div class="footer-socials">
+                <a href="https://www.youtube.com/@SwayambhooVijayeeBhav" target="_blank" title="YouTube Channel"><i class="ri-youtube-line"></i></a>
+                <a href="https://github.com/SwayambhooVijayee/swayambhoo" target="_blank" title="GitHub Project Source"><i class="ri-github-line"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

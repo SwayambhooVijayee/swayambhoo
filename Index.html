@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swayambhoo | Meditation & Mindfulness</title>
+    <!-- Google Fonts: Inter for UI, Playfair Display for Serene Headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Remix Icons CDN for clean UI icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <style>
+        /* --- Base Colors & Canvas Framework --- */
+        :root {
+            --bg-deep-space: #010e54;
+            --bg-slate-teal: #121e24;
+            --glass-fill: rgba(22, 38, 46, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.07);
+            
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            
+            --accent-amber: #f59e0b;
+            --accent-glow: rgba(245, 158, 11, 0.35);
+            --accent-teal: #14b8a6;
+            
+            --font-ui: 'Inter', sans-serif;
+            --font-heading: 'Playfair Display', serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep-space);
+            color: var(--text-primary);
+            font-family: var(--font-ui);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        /* --- Atmospheric Glowing Architecture --- */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            z-index: -1;
+            opacity: 0.25;
+        }
+        .orb-1 {
+            width: 450px;
+            height: 450px;
+            background: var(--accent-teal);
+            top: -10%;
+            left: -10%;
+        }
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-amber);
+            top: 50%;
+            right: -15%;
+        }
+
+        /* --- Navigation Layout --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(11, 17, 22, 0.75);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-icon {
+            color: var(--accent-amber);
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-yt-btn {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            color: #ef4444 !important;
+        }
+
+        .nav-yt-btn:hover {
+            background: #ef4444;
+            color: white !important;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+        }
+
+        /* --- Container Core Elements --- */
+        .content-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 2rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .glass-panel {
+            background: var(--glass-fill);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        /* --- Hero Space --- */
+        .hero-section {
+            text-align: center;
+            padding: 1.5rem 0 0.5rem 0;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            font-weight: 400;
+        }
+
+        .accent-text {
+            color: var(--accent-amber);
+            font-weight: 600;
+            text-shadow: 0 0 25px var(--accent-glow);
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 1.25rem auto;
+        }
+
+        /* --- Global Elements & Buttons --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.75rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent-amber);
+            color: var(--bg-deep-space);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--text-secondary);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--text-primary);
+        }
+
+        /* --- Advanced Unified Glass Audio Player --- */
+        .player-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            align-items: center;
+            padding: 1.25rem 2rem;
+            gap: 1.5rem;
+        }
+
+        .player-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .now-playing-visual {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--accent-amber);
+        }
+
+        .track-details h3 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 0.1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+
+        .track-details p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .player-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .control-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .master-play {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--text-primary);
+            color: var(--bg-deep-space) !important;
+            font-size: 1.2rem;
+        }
+
+        .master-play:hover {
+            transform: scale(1.08);
+        }
+
+        .progress-area {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .time-stamp {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            min-width: 35px;
+        }
+
+        .progress-bar-wrapper {
+            flex-grow: 1;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-teal), var(--accent-amber));
+            border-radius: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .player-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.5rem;
+        }
+
+        .volume-slider {
+            accent-color: var(--accent-amber);
+            width: 70px;
+            cursor: pointer;
+        }
+
+        /* --- Section Formatting & Library Grids --- */
+        .section-container {
+            padding: 0.5rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 1.25rem;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+
+        .section-header p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .library-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .meditation-card {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: var(--transition-smooth);
+        }
+
+        .card-art-frame {
+            width: 100%;
+            height: 110px;
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(245, 158, 11, 0.1));
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .card-art-frame i {
+            font-size: 2.2rem;
+            color: rgba(255, 255, 255, 0.15);
+            transition: var(--transition-smooth);
+        }
+
+        .meditation-card h3 {
+            font-size: 1.1rem;
+            font-family: var(--font-heading);
+            font-weight: 400;
+            margin-bottom: 0.35rem;
+        }
+
+        .meditation-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            flex-grow: 1;
+        }
+
+        .meditation-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .meditation-card:hover .card-art-frame i {
+            color: var(--accent-amber);
+            transform: scale(1.1);
+        }
+
+        /* --- YouTube Channel Integrated Showcase --- */
+        .youtube-cta-banner {
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            gap: 1rem;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(22, 38, 46, 0.7), rgba(15, 23, 42, 0.8));
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .btn-yt {
+            background: #ef4444;
+            color: #ffffff;
+        }
+
+        .btn-yt:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+        }
+
+        /* --- Footer Infrastructure --- */
+        .footer {
+            border-top: 1px solid var(--glass-border);
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .footer-socials a {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-socials a:hover {
+            color: var(--accent-amber);
+        }
+
+        /* --- Responsive Adaptability Matrix (Mobile Support) --- */
+        @media (max-width: 900px) {
+            .player-container {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+                padding: 1.25rem;
+            }
+            .player-right {
+                justify-content: center;
+            }
+            .hero-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+            .footer-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Decorative Glows -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <i class="ri-compass-3-line brand-icon"></i>
+                <span>स्वयंभू विजयी भव </span>
+            </a>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#meditations">Meditations</a>
+                <a href="https://www.youtube.com/channel/UCdKSF3ua5UEdjF6gGGcQXHQ" target="_blank" class="nav-yt-btn">
+                    <i class="ri-youtube-fill"></i> Channel
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <h1 class="hero-title">स्वयंभू विजयी भव <br>Awaken the Winner within. <br><span class="accent-text">Swayambhoo-Vijayee Bhav</span></h1>
+            <p class="hero-subtitle">Step into a digital sanctuary designed to align your breath, quiet your mind, and unlock cosmic confidence through deep, guided meditation.</p>
+            <a href="#meditations" class="btn btn-primary">Explore Meditation Audios</a>
+        </section>
+
+        <!-- Dynamic Audio Player Section -->
+        <section class="player-container glass-panel">
+            <div class="player-left">
+                <div class="now-playing-visual">
+                    <i class="ri-music-2-line"></i>
+                </div>
+                <div class="track-details">
+                    <h3 id="current-title">Select a meditation to begin</h3>
+                    <p id="current-category">Swayambhoo Originals</p>
+                </div>
+            </div>
+            
+            <div class="player-center">
+                <div class="player-controls">
+                    <button id="prev-btn" class="control-btn" title="Previous Track"><i class="ri-skip-back-mini-fill"></i></button>
+                    <button id="play-btn" class="control-btn master-play" title="Play/Pause"><i class="ri-play-fill"></i></button>
+                    <button id="next-btn" class="control-btn" title="Next Track"><i class="ri-skip-forward-mini-fill"></i></button>
+                </div>
+                <div class="progress-area">
+                    <span id="time-elapsed" class="time-stamp">00:00</span>
+                    <div class="progress-bar-wrapper" id="progress-wrapper">
+                        <div id="progress-bar" class="progress-bar-fill"></div>
+                    </div>
+                    <span id="time-total" class="time-stamp">00:00</span>
+                </div>
+            </div>
+
+            <div class="player-right">
+                <button id="mute-btn" class="control-btn"><i class="ri-volume-up-fill"></i></button>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.7" class="volume-slider">
+            </div>
+        </section>
+
+        <!-- Hidden Native Audio Tag managed by JavaScript -->
+        <audio id="native-audio" src=""></audio>
+
+        <!-- Meditation Library Grid -->
+        <section id="meditations" class="section-container">
+            <div class="section-header">
+                <h2>Meditation Sanctuary</h2>
+                <p>Guided meditation to balance your mental state.</p>
+            </div>
+            <div class="library-grid" id="library-container">
+                <!-- JavaScript dynamically populates cards here -->
+            </div>
+        </section>
+
+        <!-- YouTube Channel Branding CTA -->
+        <section class="youtube-cta-banner glass-panel">
+            <div class="cta-content">
+                <span class="badge">Subscribe to Swayambhoo and unleash your power within with the help of Meditation, Affirmations, Law of attraction Practices and many more tools that balances our mind and bring happiness and peace in the life.</span>
+            </div>
+            <a href="https://www.youtube.com/@SwayambhooVijayeeBhav" target="_blank" class="btn btn-yt">
+                <i class="ri-youtube-fill"></i> Subscribe to Channel
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Swayambhoo. All Rights Reserved. Designed for absolute mental clarity. ~Mrs. Supriya Ashtikar</p>
+            <div class="footer-socials">
+                <a href="https://www.youtube.com/@SwayambhooVijayeeBhav" target="_blank" title="YouTube Channel"><i class="ri-youtube-line"></i></a>
+                <a href="https://github.com/SwayambhooVijayee/swayambhoo" target="_blank" title="GitHub Project Source"><i class="ri-github-line"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. DATA MATRIX: Audio Playlist Configuration File Setup updated to point to GitHub Audios repository folder
+        const playlist = [
+            {
+                id: 0,
+                title: "Sleep Meditation",
+                category: "Meditation",
+                icon: "ri-windy-line",
+                audioUrl: "Audios/Sleep_Meditation.mp3",
+                desc: "Meditation for relaxation and sound sleep"
+            },
+            {
+                id: 1,
+                title: "15 Minutes Guided Meditation",
+                category: "Meditation",
+                icon: "ri-moon-clear-line",
+                audioUrl: "Audios/15_Minutes_Guided_Meditation.mp3",
+                desc: "Easy yet powerful guided meditation for beginners."
+            }
+        ];
+
+        // State variables tracking application usage
+        let currentTrackIndex = 0;
+        let isPlaying = false;
+
+        // UI DOM Component Selections
+        const nativeAudio = document.getElementById('native-audio');
+        const playBtn = document.getElementById('play-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressWrapper = document.getElementById('progress-wrapper');
+        const timeElapsed = document.getElementById('time-elapsed');
+        const timeTotal = document.getElementById('time-total');
+        const volumeSlider = document.getElementById('volume-slider');
+        const muteBtn = document.getElementById('mute-btn');
+
+        const currentTitle = document.getElementById('current-title');
+        const currentCategory = document.getElementById('current-category');
+        const libraryContainer = document.getElementById('library-container');
+
+        // Initialize the Sanctuary Dashboard
+        document.addEventListener('DOMContentLoaded', () => {
+            buildLibraryGrid();
+            loadTrack(currentTrackIndex);
+            setupEventListeners();
+        });
+
+        // Build the Grid Cards dynamically out of object array metrics
+        function buildLibraryGrid() {
+            libraryContainer.innerHTML = '';
+            playlist.forEach((track) => {
+                const cardHTML = `
+                    <div class="glass-panel meditation-card">
+                        <div class="card-art-frame">
+                            <i class="${track.icon}"></i>
+                        </div>
+                        <h3>${track.title}</h3>
+                        <p>${track.desc}</p>
+                        <button class="btn btn-secondary card-play-btn" onclick="directPlayTrack(${track.id})">
+                            <i class="ri-play-mini-line"></i> Listen Now
+                        </button>
+                    </div>
+                `;
+                libraryContainer.innerHTML += cardHTML;
+            });
+        }
+
+        // Track Management Core Controls
+        function loadTrack(index) {
+            currentTrackIndex = index;
+            const track = playlist[currentTrackIndex];
+            nativeAudio.src = track.audioUrl;
+            currentTitle.textContent = track.title;
+            currentCategory.textContent = track.category;
+            
+            // Reset tracker components
+            progressBar.style.width = '0%';
+            timeElapsed.textContent = '00:00';
+            timeTotal.textContent = '00:00';
+        }
+
+        function playTrack() {
+            isPlaying = true;
+            nativeAudio.play().catch(error => console.log("Audio play interaction handled safely: ", error));
+            playBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+        }
+
+        function pauseTrack() {
+            isPlaying = false;
+            nativeAudio.pause();
+            playBtn.innerHTML = '<i class="ri-play-fill"></i>';
+        }
+
+        function directPlayTrack(id) {
+            loadTrack(id);
+            playTrack();
+        }
+
+        function prevTrack() {
+            let targetIndex = currentTrackIndex - 1;
+            if (targetIndex < 0) targetIndex = playlist.length - 1;
+            loadTrack(targetIndex);
+            if (isPlaying) playTrack();
+        }
+
+        function nextTrack() {
+            let targetIndex = currentTrackIndex + 1;
+            if (targetIndex >= playlist.length) targetIndex = 0;
+            loadTrack(targetIndex);
+            if (isPlaying) playTrack();
+        }
+
+        // Format raw audio timing metrics cleanly to read human MM:SS structure
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "00:00";
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+
+        // Handle timeline scrubbing updates
+        function setProgress(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = nativeAudio.duration;
+            if (duration) {
+                nativeAudio.currentTime = (clickX / width) * duration;
+            }
+        }
+
+        // Event Bindings Mapping Setup
+        function setupEventListeners() {
+            playBtn.addEventListener('click', () => (isPlaying ? pauseTrack() : playTrack()));
+            prevBtn.addEventListener('click', prevTrack);
+            nextBtn.addEventListener('click', nextTrack);
+            
+            // Audio engine telemetry monitors
+            nativeAudio.addEventListener('timeupdate', () => {
+                const { duration, currentTime } = nativeAudio;
+                if (duration) {
+                    const progressPercent = (currentTime / duration) * 100;
+                    progressBar.style.width = `${progressPercent}%`;
+                    timeElapsed.textContent = formatTime(currentTime);
+                    timeTotal.textContent = formatTime(duration);
+                }
+            });
+
+            nativeAudio.addEventListener('ended', nextTrack);
+
+            progressWrapper.addEventListener('click', setProgress);
+            
+            // Control volume tracking configuration
+            volumeSlider.addEventListener('input', (e) => {
+                nativeAudio.volume = e.target.value;
+                if (nativeAudio.volume === 0) {
+                    muteBtn.innerHTML = '<i class="ri-volume-mute-fill"></i>';
+                } else {
+                    muteBtn.innerHTML = '<i class="ri-volume-up-fill"></i>';
+                }
+            });
+
+            muteBtn.addEventListener('click', () => {
+                if (nativeAudio.volume > 0) {
+                    nativeAudio.volume = 0;
+                    volumeSlider.value = 0;
+                    muteBtn.innerHTML = '<i class="ri-volume-mute-fill"></i>';
+                } else {
+                    nativeAudio.volume = 0.7;
+                    volumeSlider.value = 0.7;
+                    muteBtn.innerHTML = '<i class="ri-volume-up-fill"></i>';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
